@@ -6,7 +6,7 @@
 Crear un virtual environment, para instalar las librería necesarias de Python.
 
 ````shell
-python3 -m venv. venv
+python3 -m venv .venv
 ````
 
 ## 2. Iniciar el Virtual Environment
