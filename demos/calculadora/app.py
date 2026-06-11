@@ -14,17 +14,31 @@ class Index:
 
 class Calculadora:
     def GET(self):
-        return render.calculadora()
+        numero_1=0.0
+        numero_2=0.0
+        resultado=0.0
+        return render.calculadora(numero_1, numero_2, resultado)
     
     def POST(self):
         formulario = web.input()
         numero_1= float(formulario['numero_1'])
         numero_2= float(formulario['numero_2'])
-        resultado = numero_1 + numero_2
+        operacion = formulario['operacion']
 
-        print(f"Tipo de dato de numero_1: {type(numero_1)}")
-        print(f"Tipo de dato de numero_2: {type(numero_2)}")
+        if operacion == 'suma':
+            resultado = numero_1 + numero_2
+        elif operacion == 'resta':
+            resultado = numero_1 - numero_2
+        elif operacion == 'multiplicacion':
+            resultado = numero_1 * numero_2
+        elif operacion == 'division':
+            if numero_2 !=0:
+                resultado = numero_1/numero_2
+            else:
+                resultado = 'No_valido'
 
-        return f"La suma de {numero_1} + {numero_2} = {resultado}"
+        return render.calculadora(numero_1, numero_2, resultado)
+
+    
 if __name__ == "__main__":
     app.run()
