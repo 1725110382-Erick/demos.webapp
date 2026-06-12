@@ -1,4 +1,5 @@
 import web
+import math
 
 urls = (
 
@@ -25,6 +26,12 @@ class Calculadora:
         numero_2= float(formulario['numero_2'])
         operacion = formulario['operacion']
 
+        if operacion == 'limpiar':
+            return render.calculadora(0.0, 0.0, 0.0)
+        
+        numero_1 = float(formulario['numero_1']) if formulario['numero_1'] != "" else 0.0
+        numero_2 = float(formulario['numero_2']) if formulario['numero_2'] != "" else 0.0
+
         if operacion == 'suma':
             resultado = numero_1 + numero_2
         elif operacion == 'resta':
@@ -35,6 +42,14 @@ class Calculadora:
             if numero_2 !=0:
                 resultado = numero_1/numero_2
             else:
+                resultado = 'No_valido'
+        elif operacion == 'potencia':
+            resultado = numero_1 ** numero_2
+
+        elif operacion == 'raiz':
+            if numero_1 >= 0:
+                resultado = math.sqrt(numero_1)
+            else:   
                 resultado = 'No_valido'
 
         return render.calculadora(numero_1, numero_2, resultado)
