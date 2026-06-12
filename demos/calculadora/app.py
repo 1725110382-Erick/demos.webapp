@@ -52,6 +52,12 @@ class Calculadora:
             else:   
                 resultado = 'No_valido'
 
+        elif operacion == 'modulo':
+            if numero_2 != 0:
+                resultado = numero_1 % numero_2
+            else:
+                resultado = 'No_valido'
+
         return render.calculadora(numero_1, numero_2, resultado)
 
     
